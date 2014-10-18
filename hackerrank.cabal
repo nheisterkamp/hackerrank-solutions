@@ -1,0 +1,31 @@
+name: hackerrank
+version: 0.0.1
+license: Unlicense
+license-file: LICENSE
+author: Niels Heisterkamp <niels@ineffable.nl>
+maintainer: Niels Heisterkamp <niels@ineffable.nl>
+bug-reports: mailto:niels@ineffable.nl
+stability: stable
+homepage: http://ineffable.nl/
+synopsis: Hackerrank solutions
+category: Console, Text
+cabal-version: >= 1.6
+build-type: Simple
+
+Description:
+  Hackkerank!
+
+source-repository head
+  type:     git
+  location: https://github.com/nheisterkamp/hackerrank.git
+
+flag threaded
+  default: False
+
+executable hackerrank
+  hs-source-dirs: src
+  main-is: PascalsTriangle.hs
+  build-depends: base >= 4.2 && < 5
+
+  if flag(threaded)
+     ghc-options: -threaded
