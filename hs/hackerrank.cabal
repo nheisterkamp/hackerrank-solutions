@@ -1,6 +1,5 @@
 name: hackerrank
 version: 0.0.1
-license: Unlicense
 license-file: LICENSE
 author: Niels Heisterkamp <niels@ineffable.nl>
 maintainer: Niels Heisterkamp <niels@ineffable.nl>
@@ -24,8 +23,9 @@ flag threaded
 
 executable hackerrank
   hs-source-dirs: src
-  main-is: PascalsTriangle.hs
+  main-is: DifferentWays.hs
   build-depends: base >= 4.2 && < 5
+  -- other-modules: MatrixRotation
 
   if flag(threaded)
      ghc-options: -threaded

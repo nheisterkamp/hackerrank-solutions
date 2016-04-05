@@ -310,7 +310,8 @@ codeMinMax = [
 
 main :: IO ()
 main = do
-  code' <- getContents
+  --code' <- getContents
+  let code' = unlines codeFact
   solution $
     if null code'
       then unlines code

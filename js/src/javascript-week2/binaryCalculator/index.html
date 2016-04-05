@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Binary Calculator</title>
+        <style>
+            #res {
+                background-color: lightgray;
+                border-style: solid;
+                width: 81%;
+                height: 48px;
+                font-size: 20px;
+            }
+
+            #btns {
+                width: 90%;
+            }
+
+            #btn0, #btn1 {
+                background-color: lightgreen;
+                color: brown;
+            }
+
+            #btnClr, #btnEql {
+                background-color: darkgreen;
+                color: white;
+            }
+
+            #btnSum, #btnSub, #btnMul, #btnDiv {
+                background-color: black;
+                color: red;
+            }
+
+            button {
+                width: 22%;
+                height: 36px;
+                font-size: 18px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="res"></div>
+        <div id="btns">
+            <button id="btn0">0</button>
+            <button id="btn1">1</button>
+            <button id="btnClr">C</button>
+            <button id="btnEql">=</button>
+            <button id="btnSum">+</button>
+            <button id="btnSub">-</button>
+            <button id="btnMul">*</button>
+            <button id="btnDiv">/</button>
+        </div>
+        <script>
+            var curr = '';
+            var operand1 = '';
+            var operator = '';
+            var operand2 = '';
+
+            function btn0() {
+                if (operator) {
+                    operand2 += '0';
+                }
+                else {
+                    operand1 += '0';
+                }
+                res(curr + '0');
+            }
+
+            function btn1() {
+                if (operator) {
+                    operand2 += '1';
+                }
+                else {
+                    operand1 += '1';
+                }
+                res(curr + '1');
+            }
+
+            function btnClr() {
+                res('');
+                operand1 = '';
+                operator = '';
+                operand2 = '';
+            }
+
+            function btnEql() {
+                var r = calc(parseInt(operand1, 2), operator, parseInt(operand2, 2));
+                res((r | 0).toString(2));
+                operand1 = curr;
+                operator = '';
+                operand2 = '';
+            }
+
+            function calc(lhs, op, rhs) {
+                lhs = lhs || 0;
+                rhs = rhs || 0;
+                switch (op) {
+                    case '-':
+                        return lhs - rhs;
+                    case '*':
+                        return lhs * rhs;
+                    case '/':
+                        return lhs / rhs;
+                    default:
+                        return lhs + rhs;
+                }
+            }
+
+            function btnSum() {
+                operator = '+';
+                res(curr + operator);
+            }
+
+            function btnSub() {
+                operator = '-';
+                res(curr + operator);
+            }
+
+            function btnMul() {
+                operator = '*';
+                res(curr + operator);
+            }
+
+            function btnDiv() {
+                operator = '/';
+                res(curr + operator);
+            }
+
+            function res(s) {
+                document.getElementById('res').innerHTML = s;
+                curr = s;
+            }
+
+            var ids = ['0', '1', 'Clr', 'Eql', 'Sum', 'Sub', 'Mul', 'Div'];
+            var btns = ids.map(function(id) {
+                document.getElementById('btn' + id).onclick = window['btn' + id];
+            });
+        </script>
+    </body>
+</html>
